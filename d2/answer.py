@@ -1,37 +1,45 @@
-with open("example.txt", "r") as file:
+def is_valid_report(report: list, allowed_error=True, ignore_index=-1) -> bool:
+
+    is_good_report = True
+
+    # Generate the actual report based on idx
+    if ignore_index >= 0:
+        report_to_eval = [x for i, x in enumerate(report) if i != ignore_index]
+    else:
+        report_to_eval = report
+
+    # Presort it
+    ascending_report = sorted(report_to_eval, reverse=False)
+    descending_report = sorted(report_to_eval, reverse=True)
+
+    if not (ascending_report == report_to_eval or descending_report == report_to_eval):
+        is_good_report = False
+
+    for previous_value, next_value in zip(report_to_eval, report_to_eval[1::]):
+        if abs(previous_value - next_value) not in range(1, 4):
+            is_good_report = False
+
+    if not is_good_report and allowed_error:
+
+        if ignore_index >= len(report):
+            is_good_report = False
+        else:
+            # Remove the offending position
+            new_index = ignore_index + 1
+            is_good_report = is_valid_report(
+                report=report,
+                allowed_error=True,
+                ignore_index=new_index
+                )
+
+    return is_good_report
+
+with open("puzzle_input.txt", "r") as file:
     reports = [list(map(int, line.strip().split())) for line in file]
 
 
-# A report is considered safe if it's sorted ascending or
-# descending and in 1-2 units intervals
-valid_reports = 0
-for report in reports:
-    # Presort the lists
-    ascending_report = sorted(report, reverse=False)
-    descending_report = sorted(report, reverse=True)
+valid_part1_reports = [True for report in reports if is_valid_report(report, allowed_error=False)]
+valid_part2_reports = [True for report in reports if is_valid_report(report, allowed_error=True)]
 
-    over_limit = False
-    dampener_limit = True
-
-    if not (ascending_report == report or descending_report == report):
-        continue
-
-    for previous_value, next_value in zip(report, report[1:]):
-        if abs(previous_value - next_value) not in range(1, 4):
-            if dampener_limit:
-                dampener_limit = False
-                report.remove(next_value)
-                print("attempt to remove element")
-                print(report)
-            else:
-                over_limit = True
-                print("OVERLIMIT")
-                print(report)
-                break
-
-    if not over_limit:
-        valid_reports += 1
-        print("VALID")
-        print(report)
-
-print(f"Part 1 answer is {valid_reports}")
+print(f"Part 1 answer is {sum(valid_part1_reports)}")
+print(f"Part 2 answer is {sum(valid_part2_reports)}")
