@@ -28,7 +28,7 @@ def is_alineated(pair) -> bool:
     return True
 
 
-def generate_positions_in_line(pair, grid, step=None):
+def generate_positions_in_line(pair, step=None):
 
     fant, sant = pair
 
@@ -42,10 +42,6 @@ def generate_positions_in_line(pair, grid, step=None):
 
     # Initialize positions list
     positions = []
-
-    # Compute the line's bounds based on the grid size
-    min_row, max_row = 0, len(grid)
-    min_col, max_col = 0, len(grid[0])
 
     # generate all positions
     if not step:
@@ -87,7 +83,7 @@ def generate_positions_in_line(pair, grid, step=None):
 
         if is_valid_position(position_from_fant):
             positions.append(position_from_fant)
-        
+
         if is_valid_position(position_from_sant):
             positions.append(position_from_sant)
 
@@ -119,7 +115,7 @@ for antenna_type, positions in antenna_locations.items():
     antenna_pairs = itertools.combinations(positions, 2)
 
     for pair in antenna_pairs:
-        valid_antinodes = generate_positions_in_line(pair=pair, grid=grid, step=2)
+        valid_antinodes = generate_positions_in_line(pair=pair, step=2)
         antinodes.update(valid_antinodes)
 
 
@@ -133,7 +129,7 @@ for antenna_type, positions in antenna_locations.items():
 
     for pair in antenna_pairs:
         # find pssible antinodes
-        new_antinodes = generate_positions_in_line(pair, grid)
+        new_antinodes = generate_positions_in_line(pair, step=None)
         part2_antinodes.update(new_antinodes)
 
 
