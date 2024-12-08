@@ -2,6 +2,7 @@ from collections import defaultdict
 import itertools
 import re
 
+
 def is_valid_position(position: tuple) -> bool:
     row, col = position
 
@@ -9,6 +10,7 @@ def is_valid_position(position: tuple) -> bool:
     valid_col = col in range(0, len(grid[0]))
 
     return valid_row and valid_col
+
 
 def is_alineated(pair) -> bool:
     # Two SEPARATE points define a line in a 2D grid
