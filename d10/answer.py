@@ -3,17 +3,13 @@ import re
 
 def is_valid_position(position: tuple, heightmap) -> bool:
     row, col = position
-
-    valid_row = row in range(0, len(heightmap))
-    valid_col = col in range(0, len(heightmap[0]))
-
-    return valid_row and valid_col
+    return 0 <= row < len(heightmap) and 0 <= col < len(heightmap[0])
 
 
 def get_adjacent_positions(th: tuple, heightmap) -> list:
     th_row, th_column = th
 
-    positions = [
+    possible_positions = [
             # same row, previous column
             (th_row, th_column - 1),
             # same row, next column
@@ -24,11 +20,8 @@ def get_adjacent_positions(th: tuple, heightmap) -> list:
             (th_row - 1, th_column)
             ]
 
-    valid_positions = [
-        pos for pos in positions
-        if is_valid_position(pos, heightmap)
-    ]
-    return valid_positions
+    return [pos for pos in possible_positions if is_valid_position(pos, heightmap)]
+
 
 
 def adjacent_nines(th: tuple, heightmap) -> set:
@@ -43,7 +36,8 @@ def adjacent_nines(th: tuple, heightmap) -> set:
 
 
 def count_trails(th: tuple, heightmap) -> int:
-
+    # Just counts how many adjacent "9"s are in a trail
+    # since a trail always end in a 9 :)
     all_positions = get_adjacent_positions(th, heightmap)
     has_a_nine = [
         True
