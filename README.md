@@ -26,7 +26,7 @@
 * Day 6 (December 6, 2024): [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) - [Answer](https://github.com/SGMartin/advent-of-code-2024/blob/main/d6/answer.py)
 * Day 7 (December 7, 2024): [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7) - [Answer](https://github.com/SGMartin/advent-of-code-2024/blob/main/d7/answer.py)
 * Day 8 (December 8, 2024): [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) - [Answer](https://github.com/SGMartin/advent-of-code-2024/blob/main/d8/answer.py)
-* Day 9 - CODE CLEANUP -
+* Day 9 (December 9, 2024): [Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9) - [Answer](https://github.com/SGMartin/advent-of-code-2024/blob/main/d9/answer.py)
 * Day 10 (December 10, 2024): [Day 10: Hoof It](https://adventofcode.com/2024/day/10) - [Answer](https://github.com/SGMartin/advent-of-code-2024/blob/main/d10/answer.py)
 * Day 11 (December 11, 2024): [Day 11: Plutonian Pebbles](https://adventofcode.com/2024/day/11) - [Answer](https://github.com/SGMartin/advent-of-code-2024/blob/main/d11/answer.py)
 
